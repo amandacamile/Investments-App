@@ -1,8 +1,13 @@
-function App () {
+import Login from "./pages/Login";
+import { Route, Routes } from "react-router-dom";
+import StockList from "./pages/StockList";
+
+const App = () => {
   return (
-    <div>
-      <h1>Investments App</h1>
-    </div>
+      <Routes>
+        <Route exact path="/" element={ <Login /> } />
+        <Route path="/stocks" element={ <StockList /> } />
+      </Routes>
   )
 }
 
