@@ -1,10 +1,11 @@
 import React from "react";
 
-const StockList = () => {
+import StockTable from "../components/StockTable";
 
+const StockList = () => {
   return (
     <div>
-      <h1>Lista de ações</h1>
+      <StockTable />
     </div>
   )
 }
