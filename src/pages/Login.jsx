@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Login () {
+function Login() {
   const navigate = useNavigate();
 
   return (
     <div>
       <input
         type="email"
-        placeholder="E-mail" 
+        placeholder="E-mail"
       />
       <input
         type="password"
@@ -21,7 +21,7 @@ function Login () {
         Acessar
       </button>
     </div>
-  )
+  );
 }
 
 export default Login;

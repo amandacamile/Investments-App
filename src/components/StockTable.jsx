@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import fetchStocksAPI from "../services/stocksAPI";
+import React, { useEffect, useState } from 'react';
+import fetchStocksAPI from '../services/stocksAPI';
 
-const StockTable = () => {
-
+function StockTable() {
   const [stocks, setStocks] = useState([]);
 
   useEffect(() => {
@@ -11,7 +10,7 @@ const StockTable = () => {
         setStocks(await fetchStocksAPI());
       }
     )();
-  }, [])
+  }, []);
 
   return (
     <div>
@@ -27,20 +26,18 @@ const StockTable = () => {
         </thead>
         <tbody>
           {
-            stocks.map((stock) => {
-              return (
-                <tr key={stock.AssetCode}>
-                  <td>{stock.AssetName}</td>
-                  <td>{stock.AssetQtd}</td>
-                  <td>{stock.Valor}</td>
-                </tr>
-              )
-            })
+            stocks.map((stock) => (
+              <tr key={stock.AssetCode}>
+                <td>{stock.AssetName}</td>
+                <td>{stock.AssetQtd}</td>
+                <td>{stock.Valor}</td>
+              </tr>
+            ))
           }
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
-export default StockTable; 
+export default StockTable;

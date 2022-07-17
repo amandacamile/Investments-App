@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import StockTable from "../components/StockTable";
+import StockTable from '../components/StockTable';
 
-const StockList = () => {
+function StockList() {
   return (
     <div>
       <StockTable />
     </div>
-  )
+  );
 }
 
 export default StockList;
