@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import fetchStocksAPI from '../services/stocksAPI';
+import TrandingButtons from './TrandingButtons';
 
 function StockTable() {
   const [stocks, setStocks] = useState([]);
@@ -7,7 +8,8 @@ function StockTable() {
   useEffect(() => {
     (
       async () => {
-        setStocks(await fetchStocksAPI());
+        const getStocks = await fetchStocksAPI();
+        setStocks(getStocks);
       }
     )();
   }, []);
@@ -30,7 +32,8 @@ function StockTable() {
               <tr key={stock.AssetCode}>
                 <td>{stock.AssetName}</td>
                 <td>{stock.AssetQtd}</td>
-                <td>{stock.Valor}</td>
+                <td>{stock.Value}</td>
+                <td><TrandingButtons /></td>
               </tr>
             ))
           }
