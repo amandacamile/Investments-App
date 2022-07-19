@@ -35,7 +35,7 @@ function MyStocksTable() {
                 <td>{stock.AssetName}</td>
                 <td>{stock.AssetQtd}</td>
                 <td>{stock.Value}</td>
-                <td><TrandingButtons /></td>
+                <td><TrandingButtons isMyStocksTable /></td>
               </tr>
             ))
           }
