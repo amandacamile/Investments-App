@@ -6,10 +6,21 @@ import '../styles/wallet.css';
 
 function Wallet() {
   const navigate = useNavigate();
-  const { balance } = useContext(WalletContext);
+  const { balance, setBalance } = useContext(WalletContext);
 
   const [isDeposit, setIsDeposit] = useState(false);
   const [isWithdraw, setIsWithdraw] = useState(false);
+  const [valueInput, setValueInput] = useState('');
+
+  const handleInputValue = ({ target }) => {
+    setValueInput(Number(target.value));
+  };
+
+  const transactionConfirmation = () => {
+    if (isDeposit && valueInput) setBalance(balance + valueInput);
+    if (isWithdraw && valueInput) setBalance(balance - valueInput);
+    setValueInput('');
+  };
 
   return (
     <div>
@@ -38,7 +49,12 @@ function Wallet() {
       >
         Retirada
       </button>
-      <input type="text" />
+      <input
+        type="text"
+        value={valueInput}
+        placeholder="Informe o valor"
+        onChange={handleInputValue}
+      />
 
       <button
         type="button"
@@ -46,7 +62,13 @@ function Wallet() {
       >
         Voltar
       </button>
-      <button type="button">Confirmar</button>
+      <button
+        type="button"
+        onClick={() => transactionConfirmation()}
+      >
+        Confirmar
+
+      </button>
     </div>
   );
 }
