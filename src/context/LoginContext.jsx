@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 export const LoginContext = createContext();
 
-export default function LoginProvider({ children }) {
+function LoginProvider({ children }) {
   const [email, setEmail] = useState('');
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const contextValue = {
+  const loginValue = {
     email,
     setEmail,
   };
 
   return (
-    <LoginContext.Provider value={contextValue}>
+    <LoginContext.Provider value={loginValue}>
       {children}
     </LoginContext.Provider>
   );
@@ -22,3 +22,5 @@ export default function LoginProvider({ children }) {
 LoginProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export default LoginProvider;
