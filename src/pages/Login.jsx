@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LoginContext } from '../context/LoginContext';
 
 function Login() {
   const navigate = useNavigate();
+
+  const { setEmail } = useContext(LoginContext);
+
+  const handleInputChange = ({ target }) => {
+    setEmail(target.value);
+  };
 
   return (
     <div>
       <input
         type="email"
         placeholder="E-mail"
+        onChange={handleInputChange}
       />
       <input
         type="password"
