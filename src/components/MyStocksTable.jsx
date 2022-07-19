@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
+import { StocksContext } from '../context/StocksContext';
 import TrandingButtons from './TrandingButtons';
 
 function MyStocksTable() {
-  const [myStocks, setMyStocks] = useState([]);
-
-  useEffect(() => {
-    setMyStocks([
-      {
-        AssetCode: 1, AssetName: 'SBSP3', AssetQtd: 20, Value: 43.21,
-      }, {
-        AssetCode: 2, AssetName: 'RECV3', AssetQtd: 18, Value: 23.1,
-      }, {
-        AssetCode: 3, AssetName: 'PARD3', AssetQtd: 20, Value: 20.65,
-      }]);
-    // exemplos só para visualização
-  }, []);
+  const { myStocks } = useContext(StocksContext);
 
   return (
     <div>
