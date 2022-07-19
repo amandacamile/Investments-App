@@ -1,18 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import fetchStocksAPI from '../services/stocksAPI';
+import React, { useContext } from 'react';
+import { StocksContext } from '../context/StocksContext';
 import TrandingButtons from './TrandingButtons';
 
 function StockTable() {
-  const [stocks, setStocks] = useState([]);
-
-  useEffect(() => {
-    (
-      async () => {
-        const getStocks = await fetchStocksAPI();
-        setStocks(getStocks);
-      }
-    )();
-  }, []);
+  const { stocks } = useContext(StocksContext);
 
   return (
     <div>
