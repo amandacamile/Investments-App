@@ -5,8 +5,10 @@ export const ModalContext = createContext({});
 
 function ModalProvider({ children }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [infoStock, setInfoStock] = useState({});
 
-  const openModal = () => {
+  const openModal = (stock) => {
+    setInfoStock({ name: stock.name, qtd: stock.qtd, value: stock.value });
     setIsOpenModal(true);
   };
 
@@ -16,7 +18,10 @@ function ModalProvider({ children }) {
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <ModalContext.Provider value={{ isOpenModal, openModal, closeModal }}>
+    <ModalContext.Provider value={{
+      isOpenModal, infoStock, openModal, closeModal,
+    }}
+    >
       {children}
     </ModalContext.Provider>
   );

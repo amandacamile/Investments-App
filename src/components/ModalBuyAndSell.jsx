@@ -16,7 +16,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function ModalBuyAndSell() {
-  const { isOpenModal, closeModal } = useContext(ModalContext);
+  const { isOpenModal, infoStock, closeModal } = useContext(ModalContext);
 
   return (
     <div>
@@ -26,8 +26,31 @@ function ModalBuyAndSell() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <button type="button" onClick={closeModal}>close</button>
+        {/* <button type="button" onClick={closeModal}>close</button> */}
         <div>Compra/Venda</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Ação</th>
+              <th>Qtde</th>
+              <th>Valor (R$)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{infoStock.name}</td>
+              <td>{infoStock.qtd}</td>
+              <td>{infoStock.value}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button">Comprar</button>
+        <input type="text" placeholder="Informe o valor" />
+        <button type="button">Vender</button>
+        <input type="text" placeholder="Informe o valor" />
+
+        <button type="button" onClick={closeModal}>Voltar</button>
+        <button type="button">Confirmar</button>
       </Modal>
     </div>
   );
