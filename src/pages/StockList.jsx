@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../components/Header';
 import MyStocksTable from '../components/MyStocksTable';
 import StockTable from '../components/StockTable';
+import ModalBuyAndSell from '../components/ModalBuyAndSell';
+import { ModalContext } from '../context/ModalContext';
 
 function StockList() {
+  const { isOpenModal } = useContext(ModalContext);
   const navigate = useNavigate();
 
   return (
@@ -13,6 +16,7 @@ function StockList() {
       <Header />
       <MyStocksTable />
       <StockTable />
+      { isOpenModal && <ModalBuyAndSell /> }
       <button
         type="button"
         onClick={() => navigate('/wallet')}
