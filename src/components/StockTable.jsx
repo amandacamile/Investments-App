@@ -6,6 +6,14 @@ function StockTable() {
   const { stocks } = useContext(StocksContext);
   const { openModal } = useContext(ModalContext);
 
+  const handleButton = ({
+    id, name, qtd, value,
+  }) => {
+    openModal({
+      id, name, qtd, value,
+    });
+  };
+
   return (
     <div>
       <table>
@@ -26,7 +34,18 @@ function StockTable() {
                 <td>{stock.AssetQtd}</td>
                 <td>{stock.Value}</td>
                 <td>
-                  <button type="button" onClick={openModal}>C</button>
+                  <button
+                    type="button"
+                    onClick={() => handleButton({
+                      id: stock.AssetCode,
+                      name: stock.AssetName,
+                      qtd: stock.AssetQtd,
+                      value: stock.Value,
+                    })}
+                  >
+                    C
+
+                  </button>
                 </td>
               </tr>
             ))

@@ -1,16 +1,19 @@
 import React, { useContext } from 'react';
 import { StocksContext } from '../context/StocksContext';
-import { ModalContext } from '../context/ModalContext';
+// import { ModalContext } from '../context/ModalContext';
 
 function MyStocksTable() {
   const { myStocks } = useContext(StocksContext);
-  const { openModal } = useContext(ModalContext);
+  // const { openModal } = useContext(ModalContext);
 
-  const handleButton = ({ name, qtd, value }) => {
-    const infoStock = { name, qtd, value };
-    openModal(infoStock);
-    console.log(infoStock);
-  };
+  // const handleButton = ({
+  //   id, name, qtd, value,
+  // }) => {
+  //   const infoStock = {
+  //     id, name, qtd, value,
+  //   };
+  //   openModal(infoStock);
+  // };
 
   return (
     <div>
@@ -32,8 +35,28 @@ function MyStocksTable() {
                 <td>{stock.AssetQtd}</td>
                 <td>{stock.Value}</td>
                 <td>
-                  <button type="button" onClick={() => handleButton({ name: stock.AssetName, qtd: stock.AssetQtd, value: stock.Value })}>C</button>
-                  <button type="button" onClick={() => handleButton({ name: stock.AssetName, qtd: stock.AssetQtd, value: stock.Value })}>V</button>
+                  <button
+                    type="button"
+                    // onClick={() => handleButton({
+                    //   id: stock.AssetCode,
+                    //   name: stock.AssetName,
+                    //   qtd: stock.AssetQtd,
+                    //   value: stock.Value,
+                    // })}
+                  >
+                    C
+                  </button>
+                  <button
+                    type="button"
+                    // onClick={() => handleButton({
+                    //   id: stock.AssetCode,
+                    //   name: stock.AssetName,
+                    //   qtd: stock.AssetQtd,
+                    //   value: stock.Value,
+                    // })}
+                  >
+                    V
+                  </button>
                 </td>
               </tr>
             ))

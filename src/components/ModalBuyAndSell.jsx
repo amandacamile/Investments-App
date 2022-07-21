@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
 import { ModalContext } from '../context/ModalContext';
+import { StocksContext } from '../context/StocksContext';
 
 const customStyles = {
   content: {
@@ -16,7 +17,30 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function ModalBuyAndSell() {
-  const { isOpenModal, infoStock, closeModal } = useContext(ModalContext);
+  const {
+    isOpenModal, infoStock, closeModal, /* updateStockInfo, */
+  } = useContext(ModalContext);
+  // const { myStocks, setMyStocks } = useContext(StocksContext);
+  const { stocks } = useContext(StocksContext);
+
+  const [buyValue, setBuyValue] = useState(0);
+  // const [sellValue, setSellValue] = useState('');
+
+  const handleInputBuy = ({ target }) => {
+    setBuyValue(Number(target.value));
+  };
+
+  const handleButtonConfirm = () => {
+    const mapStocks = stocks.map((stock) => {
+      if (stock.AssetCode === infoStock.id) {
+        const newValue = stock.AssetQtd - buyValue;
+        Object.assign(stock, { AssetQtd: newValue });
+      }
+      return stock;
+    });
+
+    return mapStocks;
+  };
 
   return (
     <div>
@@ -26,8 +50,7 @@ function ModalBuyAndSell() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        {/* <button type="button" onClick={closeModal}>close</button> */}
-        <div>Compra/Venda</div>
+        <h1>Compra/Venda</h1>
         <table>
           <thead>
             <tr>
@@ -44,13 +67,14 @@ function ModalBuyAndSell() {
             </tr>
           </tbody>
         </table>
+
         <button type="button">Comprar</button>
-        <input type="text" placeholder="Informe o valor" />
-        <button type="button">Vender</button>
-        <input type="text" placeholder="Informe o valor" />
+        <input type="text" placeholder="Informe o valor" onChange={handleInputBuy} />
+        {/* <button type="button">Vender</button>
+        <input type="text" placeholder="Informe o valor" onChange={handleInputSell} /> */}
 
         <button type="button" onClick={closeModal}>Voltar</button>
-        <button type="button">Confirmar</button>
+        <button type="button" onClick={handleButtonConfirm}>Confirmar</button>
       </Modal>
     </div>
   );

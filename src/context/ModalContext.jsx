@@ -7,14 +7,22 @@ function ModalProvider({ children }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [infoStock, setInfoStock] = useState({});
 
-  const openModal = (stock) => {
-    setInfoStock({ name: stock.name, qtd: stock.qtd, value: stock.value });
+  const openModal = ({
+    id, name, qtd, value,
+  }) => {
+    setInfoStock({
+      id, name, qtd, value,
+    });
     setIsOpenModal(true);
   };
 
   const closeModal = () => {
     setIsOpenModal(false);
   };
+
+  // const updateStockInfo = (info) => {
+  //   setInfoStock({ ...infoStock, qtd: info });
+  // };
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
