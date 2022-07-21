@@ -1,19 +1,8 @@
 import React, { useContext } from 'react';
 import { StocksContext } from '../context/StocksContext';
-// import { ModalContext } from '../context/ModalContext';
 
 function MyStocksTable() {
   const { myStocks } = useContext(StocksContext);
-  // const { openModal } = useContext(ModalContext);
-
-  // const handleButton = ({
-  //   id, name, qtd, value,
-  // }) => {
-  //   const infoStock = {
-  //     id, name, qtd, value,
-  //   };
-  //   openModal(infoStock);
-  // };
 
   return (
     <div>
@@ -35,7 +24,11 @@ function MyStocksTable() {
                 <td>{stock.AssetQtd}</td>
                 <td>{stock.Value}</td>
                 <td>
-                  <button type="button">$</button>
+                  <button
+                    type="button"
+                  >
+                    $
+                  </button>
                 </td>
               </tr>
             ))

@@ -26,7 +26,7 @@ function Wallet() {
     <div>
       <Header />
       <h3>Saldo em conta:</h3>
-      <h3>{`R$ ${balance}`}</h3>
+      <h3>{`R$ ${balance.toFixed(2)}`}</h3>
       <button
         className={isDeposit ? 'enabled-button' : 'disabled-button'}
         type="button"

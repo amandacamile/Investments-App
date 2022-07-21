@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
+import Swal from 'sweetalert2';
 import { ModalContext } from '../context/ModalContext';
 import { StocksContext } from '../context/StocksContext';
+import { WalletContext } from '../context/WalletContext';
 
 const customStyles = {
   content: {
@@ -17,29 +19,47 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function ModalBuyAndSell() {
-  const {
-    isOpenModal, infoStock, closeModal, /* updateStockInfo, */
-  } = useContext(ModalContext);
-  // const { myStocks, setMyStocks } = useContext(StocksContext);
-  const { stocks } = useContext(StocksContext);
+  const { isOpenModal, infoStock, closeModal } = useContext(ModalContext);
+  const { stocks, manipulateMyStocks } = useContext(StocksContext);
+  const { balance, setBalance } = useContext(WalletContext);
+
+  console.log(balance);
 
   const [buyValue, setBuyValue] = useState(0);
-  // const [sellValue, setSellValue] = useState('');
 
   const handleInputBuy = ({ target }) => {
     setBuyValue(Number(target.value));
   };
 
-  const handleButtonConfirm = () => {
-    const mapStocks = stocks.map((stock) => {
+  const makePurchase = () => {
+    stocks.map((stock) => {
       if (stock.AssetCode === infoStock.id) {
-        const newValue = stock.AssetQtd - buyValue;
-        Object.assign(stock, { AssetQtd: newValue });
+        Object.assign(stock, { AssetQtd: stock.AssetQtd - buyValue });
       }
       return stock;
-    });
+    }); // diminuindo quantidade de ações que foram compradas
 
-    return mapStocks;
+    manipulateMyStocks(infoStock, buyValue); // adicionando a ação o estado global MyStocks
+  };
+
+  const handleButtonConfirm = () => {
+    const purchaseTotal = (buyValue * infoStock.value).toFixed(2);
+    if (balance >= purchaseTotal) {
+      makePurchase();
+      setBalance(balance - purchaseTotal);
+    } else {
+      Swal.fire({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+        icon: 'error',
+        title: 'Saldo insuficiente!',
+        html:
+          '<hr/>'
+          + `<p>Saldo atual: RS ${balance}</p>`,
+      });
+    }
   };
 
   return (
