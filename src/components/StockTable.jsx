@@ -43,8 +43,7 @@ function StockTable() {
                       value: stock.Value,
                     })}
                   >
-                    C
-
+                    $
                   </button>
                 </td>
               </tr>

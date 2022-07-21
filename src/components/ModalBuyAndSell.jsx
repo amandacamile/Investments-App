@@ -50,7 +50,9 @@ function ModalBuyAndSell() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h1>Compra/Venda</h1>
+        <button type="button">Comprar</button>
+        <button type="button">Vender</button>
+        <h1>Compra</h1>
         <table>
           <thead>
             <tr>
@@ -68,7 +70,6 @@ function ModalBuyAndSell() {
           </tbody>
         </table>
 
-        <button type="button">Comprar</button>
         <input type="text" placeholder="Informe o valor" onChange={handleInputBuy} />
         {/* <button type="button">Vender</button>
         <input type="text" placeholder="Informe o valor" onChange={handleInputSell} /> */}

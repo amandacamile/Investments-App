@@ -35,28 +35,7 @@ function MyStocksTable() {
                 <td>{stock.AssetQtd}</td>
                 <td>{stock.Value}</td>
                 <td>
-                  <button
-                    type="button"
-                    // onClick={() => handleButton({
-                    //   id: stock.AssetCode,
-                    //   name: stock.AssetName,
-                    //   qtd: stock.AssetQtd,
-                    //   value: stock.Value,
-                    // })}
-                  >
-                    C
-                  </button>
-                  <button
-                    type="button"
-                    // onClick={() => handleButton({
-                    //   id: stock.AssetCode,
-                    //   name: stock.AssetName,
-                    //   qtd: stock.AssetQtd,
-                    //   value: stock.Value,
-                    // })}
-                  >
-                    V
-                  </button>
+                  <button type="button">$</button>
                 </td>
               </tr>
             ))

@@ -20,10 +20,6 @@ function ModalProvider({ children }) {
     setIsOpenModal(false);
   };
 
-  // const updateStockInfo = (info) => {
-  //   setInfoStock({ ...infoStock, qtd: info });
-  // };
-
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     <ModalContext.Provider value={{
