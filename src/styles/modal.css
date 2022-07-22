@@ -1,0 +1,11 @@
+.enabled-button {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.disabled-button {
+  background-color: grey;
+  color: black;
+  border: none;
+}

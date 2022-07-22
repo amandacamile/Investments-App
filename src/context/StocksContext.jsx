@@ -18,11 +18,21 @@ function StocksProvider({ children }) {
     setMyStocks([...myStocks, newStock]);
   };
 
+  const manipulateStocks = ({ name, value }, sellValue) => {
+    const newStock = {
+      AssetCode: stocks.length + 1,
+      AssetName: name,
+      AssetQtd: sellValue,
+      Value: value,
+    };
+    setStocks([...stocks, newStock]);
+  };
+
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const contextValue = {
     stocks,
     myStocks,
-    setStocks,
+    manipulateStocks,
     manipulateMyStocks,
   };
 
