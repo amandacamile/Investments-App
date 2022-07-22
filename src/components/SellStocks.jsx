@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import * as yup from 'yup';
 import { ModalContext } from '../context/ModalContext';
 import { StocksContext } from '../context/StocksContext';
 import { WalletContext } from '../context/WalletContext';
@@ -9,9 +10,32 @@ function SellStocks() {
   const { myStocks, manipulateStocks } = useContext(StocksContext);
 
   const [sellValue, setSellValue] = useState(0);
+  const [status, setStatus] = useState({
+    type: '',
+    message: '',
+  });
 
   const handleInputSell = ({ target }) => {
     setSellValue(Number(target.value));
+  };
+
+  const validateSellValue = async () => {
+    console.log(sellValue);
+    const schemaBuy = yup.number().typeError('Somente números são válidos')
+      .positive('Informe a quantidade de ações a ser comprada')
+      .required('Informe a quantidade de ações a ser comprada');
+
+    try {
+      await schemaBuy.validate(sellValue);
+      setStatus({ type: 'sucess' });
+      return true;
+    } catch (err) {
+      setStatus({
+        type: 'error',
+        message: err.errors,
+      });
+      return false;
+    }
   };
 
   const makeSale = () => {
@@ -24,7 +48,9 @@ function SellStocks() {
     manipulateStocks(infoStock, sellValue);
   };
 
-  const handleButtonConfirm = () => {
+  const handleButtonConfirm = async () => {
+    if (!(await validateSellValue())) return;
+
     const totalSale = Number(sellValue * infoStock.value);
     makeSale();
     setBalance(balance + totalSale);
@@ -50,6 +76,7 @@ function SellStocks() {
         </tbody>
       </table>
 
+      <p style={status.type === 'error' ? { color: '#ff0000' } : null}>{status.message}</p>
       <input type="text" placeholder="Informe o valor" onChange={handleInputSell} />
 
       <button type="button" onClick={handleButtonConfirm}>Confirmar</button>

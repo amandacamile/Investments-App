@@ -20,10 +20,14 @@ function ModalProvider({ children }) {
     setIsOpenModal(false);
   };
 
+  const updateInfoStock = (newInfoStock) => {
+    setInfoStock(newInfoStock);
+  };
+
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     <ModalContext.Provider value={{
-      isOpenModal, infoStock, openModal, closeModal,
+      isOpenModal, infoStock, openModal, closeModal, updateInfoStock,
     }}
     >
       {children}
