@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { LoginContext } from '../context/LoginContext';
 
 function Header() {
-  const { email } = useContext(LoginContext);
-  const userName = email.slice(0, email.indexOf('@'));
+  const { login } = useContext(LoginContext);
+  const userName = login.email.slice(0, login.email.indexOf('@'));
 
   return (
     <header>

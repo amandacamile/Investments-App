@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 export const LoginContext = createContext();
 
 function LoginProvider({ children }) {
-  const [email, setEmail] = useState('');
+  const [login, setLogin] = useState({
+    email: '',
+    password: '',
+  });
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const loginValue = {
-    email,
-    setEmail,
+    login,
+    setLogin,
   };
 
   return (
