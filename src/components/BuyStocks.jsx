@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import Swal from 'sweetalert2';
 import { ModalContext } from '../context/ModalContext';
 import { StocksContext } from '../context/StocksContext';
 import { WalletContext } from '../context/WalletContext';
@@ -31,19 +30,20 @@ function BuyStocks() {
     if (balance >= purchaseTotal) {
       makePurchase();
       setBalance(balance - purchaseTotal);
-    } else {
-      Swal.fire({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-        icon: 'error',
-        title: 'Saldo insuficiente!',
-        html:
-          '<hr/>'
-          + `<p>Saldo atual: RS ${balance}</p>`,
-      });
     }
+    // else {
+    // Swal.fire({
+    //   toast: true,
+    //   position: 'top',
+    //   showConfirmButton: false,
+    //   timer: 3000,
+    //   icon: 'error',
+    //   title: 'Saldo insuficiente!',
+    //   html:
+    //     '<hr/>'
+    //     + `<p>Saldo atual: RS ${balance}</p>`,
+    // });
+    // }
   };
 
   return (
