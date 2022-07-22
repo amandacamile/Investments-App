@@ -6,7 +6,7 @@ import { StocksContext } from '../context/StocksContext';
 import { WalletContext } from '../context/WalletContext';
 
 function BuyStocks() {
-  const { infoStock, updateInfoStock } = useContext(ModalContext);
+  const { infoStock, updateInfoStock, closeModal } = useContext(ModalContext);
   const { stocks, manipulateMyStocks } = useContext(StocksContext);
   const { balance, setBalance } = useContext(WalletContext);
 
@@ -53,11 +53,40 @@ function BuyStocks() {
   const handleButtonConfirm = async () => {
     if (!(await validateBuyValue())) return;
 
+    // valort total da compra
     const purchaseTotal = (buyValue * infoStock.value).toFixed(2);
 
     if (balance >= purchaseTotal) {
-      makePurchase();
-      setBalance(balance - purchaseTotal);
+      Swal.fire({
+        title: 'Deseja continuar com a compra?',
+        html:
+        '<p >Quantidade de ações:</p>'
+        + `<p>${buyValue}</p>`
+        + '<p >Valor Total:</p>'
+        + `<p>R$ ${purchaseTotal}</p>`
+        + '<hr/>'
+        + '<p >Saldo Atual:</p>'
+        + `<p>R$ ${balance.toFixed(2)}</p>`,
+        text: 'Ao clicar em Sim a compra será efetuada!',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Sim',
+        showConfirmButton: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          makePurchase();
+          setBalance(balance - purchaseTotal);
+          Swal.fire(
+            'Compra Efetuada!',
+            'Ação comprada já consta em suas ações',
+            'success',
+          );
+        }
+        closeModal();
+      });
     } else {
       Swal.mixin({
         toast: true,

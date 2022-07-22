@@ -20,7 +20,6 @@ function SellStocks() {
   };
 
   const validateSellValue = async () => {
-    console.log(sellValue);
     const schemaBuy = yup.number().typeError('Somente números são válidos')
       .positive('Informe a quantidade de ações a ser comprada')
       .required('Informe a quantidade de ações a ser comprada');
