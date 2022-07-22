@@ -22,6 +22,14 @@ function BuyStocks() {
   };
 
   const validateBuyValue = async () => {
+    if (buyValue > infoStock.qtd) {
+      setStatus({
+        type: 'error',
+        message: 'O valor informado é maior que a quantidade disponível',
+      });
+      return false;
+    }
+
     const schemaBuy = yup.number().typeError('Somente números são válidos')
       .positive('Informe a quantidade de ações a ser comprada')
       .required('Informe a quantidade de ações a ser comprada');
@@ -53,7 +61,7 @@ function BuyStocks() {
   const handleButtonConfirm = async () => {
     if (!(await validateBuyValue())) return;
 
-    // valort total da compra
+    // valor total da compra
     const purchaseTotal = (buyValue * infoStock.value).toFixed(2);
 
     if (balance >= purchaseTotal) {
@@ -93,7 +101,6 @@ function BuyStocks() {
         position: 'top-end',
         showConfirmButton: false,
         timer: 3000,
-        timerProgressBar: true,
       }).fire({
         icon: 'warning',
         title: 'Saldo Insuficiente!',

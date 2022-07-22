@@ -21,12 +21,20 @@ function SellStocks() {
   };
 
   const validateSellValue = async () => {
-    const schemaBuy = yup.number().typeError('Somente números são válidos')
-      .positive('Informe a quantidade de ações a ser comprada')
-      .required('Informe a quantidade de ações a ser comprada');
+    if (sellValue > infoStock.qtd) {
+      setStatus({
+        type: 'error',
+        message: 'O valor informado é maior que a quantidade disponível',
+      });
+      return false;
+    }
+
+    const schemaSell = yup.number().typeError('Somente números são válidos')
+      .positive('Informe a quantidade de ações a ser vendida')
+      .required('Informe a quantidade de ações a ser vendida');
 
     try {
-      await schemaBuy.validate(sellValue);
+      await schemaSell.validate(sellValue);
       setStatus({ type: 'sucess' });
       return true;
     } catch (err) {
