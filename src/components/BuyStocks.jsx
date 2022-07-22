@@ -58,7 +58,7 @@ function BuyStocks() {
 
     if (balance >= purchaseTotal) {
       Swal.fire({
-        title: 'Deseja continuar com a compra?',
+        title: 'Deseja efetuar a compra?',
         html:
         '<p >Quantidade de ações:</p>'
         + `<p>${buyValue}</p>`

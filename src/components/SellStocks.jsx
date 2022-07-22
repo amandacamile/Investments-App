@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
+import Swal from 'sweetalert2';
 import * as yup from 'yup';
 import { ModalContext } from '../context/ModalContext';
 import { StocksContext } from '../context/StocksContext';
 import { WalletContext } from '../context/WalletContext';
 
 function SellStocks() {
-  const { infoStock } = useContext(ModalContext);
+  const { infoStock, updateInfoStock, closeModal } = useContext(ModalContext);
   const { balance, setBalance } = useContext(WalletContext);
   const { myStocks, manipulateStocks } = useContext(StocksContext);
 
@@ -51,8 +52,35 @@ function SellStocks() {
     if (!(await validateSellValue())) return;
 
     const totalSale = Number(sellValue * infoStock.value);
-    makeSale();
-    setBalance(balance + totalSale);
+
+    Swal.fire({
+      title: 'Deseja efetuar a venda?',
+      html:
+        '<p >Quantidade de ações:</p>'
+        + `<p>${sellValue}</p>`
+        + '<p >Valor Total da Venda:</p>'
+        + `<p>R$ ${totalSale}</p>`,
+      text: 'Ao clicar em Sim a compra será efetuada!',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Sim',
+      showConfirmButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        makeSale();
+        setBalance(balance + totalSale);
+        Swal.fire(
+          'Venda Efetuada!',
+          'success',
+        );
+      }
+      closeModal();
+    });
+
+    updateInfoStock({ ...infoStock, qtd: infoStock.qtd - sellValue });
   };
 
   return (
