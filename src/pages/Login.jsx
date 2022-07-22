@@ -16,13 +16,12 @@ function Login() {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const validateLogin = async () => {
-    const schema = yup.object().shape({
-      email: yup.string().email('Insira um email válido!').required('É necessário preencher o email!'),
-      password: yup.string().required('É necessário preencher a senha!').min(6, 'A senha deve ter no mínimo 6 caracteres!'),
-    });
-
+    const schemaEmail = yup.string().email('Insira um email válido!').required('É necessário preencher o email!');
+    const schemaPass = yup.string().required('É necessário preencher a senha!').min(6, 'A senha deve ter no mínimo 6 caracteres!');
+    // schemas separados para serem validados unitariamente
     try {
-      await schema.validate(login);
+      await schemaEmail.validate(login.email);
+      await schemaPass.validate(login.password);
       setStatus({ type: 'sucess' });
       return true;
     } catch (err) {
