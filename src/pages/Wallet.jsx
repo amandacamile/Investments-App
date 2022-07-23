@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 import Header from '../components/Header';
 import { WalletContext } from '../context/WalletContext';
 import '../styles/wallet.css';
@@ -12,11 +13,51 @@ function Wallet() {
   const [isWithdraw, setIsWithdraw] = useState(false);
   const [valueInput, setValueInput] = useState('');
 
+  const [status, setStatus] = useState({
+    type: '',
+    message: '',
+  });
+
   const handleInputValue = ({ target }) => {
     setValueInput(Number(target.value));
   };
 
-  const transactionConfirmation = () => {
+  const validateInputWallet = async () => {
+    if (!isDeposit && !isWithdraw) {
+      setStatus({
+        type: 'error',
+        message: 'Selecione uma das opções acima',
+      });
+      return false;
+    }
+
+    if (isWithdraw && valueInput > balance) {
+      setStatus({
+        type: 'error',
+        message: 'Valor inserido maior que o saldo disponível',
+      });
+      return false;
+    }
+
+    const schemaWallet = yup.number().typeError('Somente números são válidos')
+      .positive('Informe uma quantidade válida')
+      .required('Informe a quantidade');
+
+    try {
+      await schemaWallet.validate(valueInput);
+      return true;
+    } catch (err) {
+      setStatus({
+        type: 'error',
+        message: err.errors,
+      });
+      return false;
+    }
+  };
+
+  const transactionConfirmation = async () => {
+    if (!(await validateInputWallet())) return;
+
     if (isDeposit && valueInput) setBalance(balance + valueInput);
     if (isWithdraw && valueInput) setBalance(balance - valueInput);
     setValueInput('');
@@ -26,7 +67,7 @@ function Wallet() {
     <div>
       <Header />
       <h3>Saldo em conta:</h3>
-      <h3>{`R$ ${balance.toFixed(2)}`}</h3>
+      <h3>{`R$ ${Number(balance).toFixed(2)}`}</h3>
       <button
         className={isDeposit ? 'enabled-button' : 'disabled-button'}
         type="button"
@@ -49,6 +90,7 @@ function Wallet() {
       >
         Retirada
       </button>
+      <p style={status.type === 'error' ? { color: '#ff0000' } : null}>{status.message}</p>
       <input
         type="text"
         value={valueInput}
