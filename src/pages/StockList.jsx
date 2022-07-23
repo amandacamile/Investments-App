@@ -19,6 +19,7 @@ function StockList() {
       { isOpenModal && <ModalBuyAndSell /> }
       <button
         type="button"
+        data-testid="button-deposit"
         onClick={() => navigate('/wallet')}
       >
         Déposito/Retirada

@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
-export const LoginContext = createContext();
+export const LoginContext = createContext('');
 
 function LoginProvider({ children }) {
   const [login, setLogin] = useState({
@@ -9,10 +9,14 @@ function LoginProvider({ children }) {
     password: '',
   });
 
+  const updateLogin = (newLogin) => {
+    setLogin(newLogin);
+  };
+
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const loginValue = {
     login,
-    setLogin,
+    updateLogin,
   };
 
   return (

@@ -6,7 +6,7 @@ import { LoginContext } from '../context/LoginContext';
 function Login() {
   const navigate = useNavigate();
 
-  const { login, setLogin } = useContext(LoginContext);
+  const { login, updateLogin } = useContext(LoginContext);
 
   const [status, setStatus] = useState({
     type: '',
@@ -33,20 +33,20 @@ function Login() {
     }
   };
 
-  const handleAcessButton = async () => {
+  const handleAcessButton = () => {
     // é assincrona pois deve ser executada antes de qualquer outro
     navigate('/stocks');
   };
 
   const handleInputChange = async ({ target: { name, value } }) => {
-    setLogin({
-      ...login,
-      [name]: value,
-    });
-
-    if (await validateLogin()) {
+    try {
+      await validateLogin();
+      updateLogin({
+        ...login,
+        [name]: value,
+      });
       setIsDisabled(false);
-    } else {
+    } catch (error) {
       setIsDisabled(true);
     }
   };
@@ -57,17 +57,20 @@ function Login() {
       <input
         type="email"
         name="email"
+        data-testid="email-login"
         placeholder="E-mail"
         onChange={handleInputChange}
       />
       <input
         type="password"
         name="password"
+        data-testid="password-login"
         placeholder="Senha"
         onChange={handleInputChange}
       />
       <button
         type="button"
+        data-testid="button-login"
         disabled={isDisabled}
         onClick={handleAcessButton}
       >
