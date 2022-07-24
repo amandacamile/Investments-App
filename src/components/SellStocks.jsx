@@ -8,7 +8,7 @@ import { WalletContext } from '../context/WalletContext';
 function SellStocks() {
   const { infoStock, updateInfoStock, closeModal } = useContext(ModalContext);
   const { balance, setBalance } = useContext(WalletContext);
-  const { myStocks, manipulateStocks } = useContext(StocksContext);
+  const { myStocks, manipulateStocks, removeMyZeroedStocks } = useContext(StocksContext);
 
   const [sellValue, setSellValue] = useState(0);
   const [status, setStatus] = useState({
@@ -54,6 +54,8 @@ function SellStocks() {
       return stock;
     });
     manipulateStocks(infoStock, sellValue);
+
+    removeMyZeroedStocks();
   };
 
   const handleButtonConfirm = async () => {

@@ -7,7 +7,7 @@ import { WalletContext } from '../context/WalletContext';
 
 function BuyStocks() {
   const { infoStock, updateInfoStock, closeModal } = useContext(ModalContext);
-  const { stocks, manipulateMyStocks } = useContext(StocksContext);
+  const { stocks, manipulateMyStocks, removeZeroedStocks } = useContext(StocksContext);
   const { balance, setBalance } = useContext(WalletContext);
 
   const [buyValue, setBuyValue] = useState(0);
@@ -56,6 +56,8 @@ function BuyStocks() {
     }); // diminuindo quantidade de ações que foram compradas
 
     manipulateMyStocks(infoStock, buyValue); // adicionando a ação o estado global MyStocks
+
+    removeZeroedStocks();
   };
 
   const handleButtonConfirm = async () => {
