@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Header from '../components/Header';
 import MyStocksTable from '../components/MyStocksTable';
@@ -9,7 +8,6 @@ import { ModalContext } from '../context/ModalContext';
 
 function StockList() {
   const { isOpenModal } = useContext(ModalContext);
-  const navigate = useNavigate();
 
   return (
     <div>
@@ -17,13 +15,6 @@ function StockList() {
       <MyStocksTable />
       <StockTable />
       { isOpenModal && <ModalBuyAndSell /> }
-      <button
-        type="button"
-        data-testid="button-deposit"
-        onClick={() => navigate('/wallet')}
-      >
-        Déposito/Retirada
-      </button>
     </div>
   );
 }

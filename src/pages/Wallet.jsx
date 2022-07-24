@@ -65,7 +65,7 @@ function Wallet() {
 
   return (
     <div>
-      <Header />
+      <Header hideWalletButton />
       <h3>Saldo em conta:</h3>
       <h3>{`R$ ${Number(balance).toFixed(2)}`}</h3>
       <button
