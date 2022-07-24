@@ -25,16 +25,16 @@ function Login() {
     try {
       await schemaLogin.validate(login);
       setStatus({ type: 'sucess' });
-
       setIsDisabled(false);
+
       return true;
     } catch (err) {
       setStatus({
         type: 'error',
         message: err.errors,
       });
-
       setIsDisabled(true);
+
       return false;
     }
   };

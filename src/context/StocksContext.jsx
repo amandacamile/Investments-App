@@ -12,12 +12,14 @@ function StocksProvider({ children }) {
   const manipulateMyStocks = ({ name, value }, buyValue) => {
     try {
       const newStock = myStocks.find((stock) => stock.AssetName === name);
+
       const sumStock = {
         AssetCode: uuid(),
         AssetName: name,
         AssetQtd: newStock.AssetQtd + buyValue,
         Value: value,
       };
+
       const newArrStocks = myStocks.filter((elem) => elem !== newStock);
       setMyStocks([...newArrStocks, sumStock]);
     } catch (error) {
@@ -27,26 +29,22 @@ function StocksProvider({ children }) {
         AssetQtd: buyValue,
         Value: value,
       };
+
       setMyStocks([...myStocks, newStock]);
     }
   };
 
   const manipulateStocks = ({ name, value }, sellValue) => {
-    // const newStock = {
-    //   AssetCode: uuid(),
-    //   AssetName: name,
-    //   AssetQtd: sellValue,
-    //   Value: value,
-    // };
-    // setStocks([...stocks, newStock]);
     try {
       const newStock = stocks.find((stock) => stock.AssetName === name);
+
       const sumStock = {
         AssetCode: uuid(),
         AssetName: name,
         AssetQtd: newStock.AssetQtd + sellValue,
         Value: value,
       };
+
       const newArrStocks = stocks.filter((elem) => elem !== newStock);
       setStocks([...newArrStocks, sumStock]);
     } catch (error) {
@@ -56,6 +54,7 @@ function StocksProvider({ children }) {
         AssetQtd: sellValue,
         Value: value,
       };
+
       setStocks([...stocks, newStock]);
     }
   };
@@ -63,12 +62,14 @@ function StocksProvider({ children }) {
   const removeMyZeroedStocks = () => {
     const stockZeroed = myStocks.find((stock) => stock.AssetQtd === 0);
     const newArrStocks = myStocks.filter((stock) => stock !== stockZeroed);
+
     setMyStocks(newArrStocks);
   };
 
   const removeZeroedStocks = () => {
     const stockZeroed = stocks.find((stock) => stock.AssetQtd === 0);
     const newArrStocks = stocks.filter((stock) => stock !== stockZeroed);
+
     setStocks(newArrStocks);
   };
 

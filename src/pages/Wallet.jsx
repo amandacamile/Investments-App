@@ -6,7 +6,8 @@ import { WalletContext } from '../context/WalletContext';
 
 function Wallet() {
   const navigate = useNavigate();
-  const { balance, setBalance } = useContext(WalletContext);
+
+  const { balance, updateBalance } = useContext(WalletContext);
 
   const [isDeposit, setIsDeposit] = useState(false);
   const [isWithdraw, setIsWithdraw] = useState(false);
@@ -57,8 +58,9 @@ function Wallet() {
   const transactionConfirmation = async () => {
     if (!(await validateInputWallet())) return;
 
-    if (isDeposit && valueInput) setBalance(balance + Number(valueInput));
-    if (isWithdraw && valueInput) setBalance(balance - Number(valueInput));
+    if (isDeposit && valueInput) updateBalance(balance + Number(valueInput));
+    if (isWithdraw && valueInput) updateBalance(balance - Number(valueInput));
+
     setValueInput('');
   };
 
@@ -81,6 +83,7 @@ function Wallet() {
           }}
         >
           Depósito
+
         </button>
         <button
           type="button"
@@ -93,6 +96,7 @@ function Wallet() {
           }}
         >
           Retirada
+
         </button>
       </div>
       <p style={status.type === 'error' ? { color: '#ff0000' } : null}>{status.message}</p>
@@ -127,6 +131,7 @@ function Wallet() {
           onClick={() => navigate('/stocks')}
         >
           Voltar
+
         </button>
       </div>
     </div>

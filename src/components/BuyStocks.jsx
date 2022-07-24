@@ -8,10 +8,9 @@ import { WalletContext } from '../context/WalletContext';
 function BuyStocks() {
   const { infoStock, updateInfoStock, closeModal } = useContext(ModalContext);
   const { stocks, manipulateMyStocks, removeZeroedStocks } = useContext(StocksContext);
-  const { balance, setBalance } = useContext(WalletContext);
+  const { balance, updateBalance } = useContext(WalletContext);
 
   const [buyValue, setBuyValue] = useState(0);
-
   const [status, setStatus] = useState({
     type: '',
     message: '',
@@ -53,17 +52,15 @@ function BuyStocks() {
         Object.assign(stock, { AssetQtd: stock.AssetQtd - buyValue });
       }
       return stock;
-    }); // diminuindo quantidade de ações que foram compradas
+    });
 
-    manipulateMyStocks(infoStock, buyValue); // adicionando a ação o estado global MyStocks
-
+    manipulateMyStocks(infoStock, buyValue);
     removeZeroedStocks();
   };
 
   const handleButtonConfirm = async () => {
     if (!(await validateBuyValue())) return;
 
-    // valor total da compra
     const purchaseTotal = (buyValue * infoStock.value).toFixed(2);
 
     if (balance >= purchaseTotal) {
@@ -86,7 +83,7 @@ function BuyStocks() {
       }).then((result) => {
         if (result.isConfirmed) {
           makePurchase();
-          setBalance(balance - purchaseTotal);
+          updateBalance(balance - purchaseTotal);
           Swal.fire({
             icon: 'success',
             iconColor: '#FFC709',

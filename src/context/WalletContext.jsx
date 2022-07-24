@@ -6,10 +6,14 @@ export const WalletContext = createContext();
 function WalletProvider({ children }) {
   const [balance, setBalance] = useState(0);
 
+  const updateBalance = (newBalance) => {
+    setBalance(newBalance);
+  };
+
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const contextValue = {
     balance,
-    setBalance,
+    updateBalance,
   };
 
   return (

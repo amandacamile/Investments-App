@@ -7,7 +7,7 @@ import { WalletContext } from '../context/WalletContext';
 
 function SellStocks() {
   const { infoStock, updateInfoStock, closeModal } = useContext(ModalContext);
-  const { balance, setBalance } = useContext(WalletContext);
+  const { balance, updateBalance } = useContext(WalletContext);
   const { myStocks, manipulateStocks, removeMyZeroedStocks } = useContext(StocksContext);
 
   const [sellValue, setSellValue] = useState(0);
@@ -50,11 +50,11 @@ function SellStocks() {
     myStocks.map((stock) => {
       if (stock.AssetCode === infoStock.id) {
         Object.assign(stock, { AssetQtd: stock.AssetQtd - sellValue });
-      } // diminuindo a quantidade de acoes que foram vendidas
+      }
       return stock;
     });
-    manipulateStocks(infoStock, sellValue);
 
+    manipulateStocks(infoStock, sellValue);
     removeMyZeroedStocks();
   };
 
@@ -80,7 +80,7 @@ function SellStocks() {
     }).then((result) => {
       if (result.isConfirmed) {
         makeSale();
-        setBalance(balance + totalSale);
+        updateBalance(balance + totalSale);
         Swal.fire({
           icon: 'success',
           iconColor: '#FFC709',
