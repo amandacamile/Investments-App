@@ -15,9 +15,14 @@ function StockTable() {
   };
 
   return (
-    <div className="w-full flex items-center justify-center">
-      <table className="w-2/4">
-        <caption className="bg-chinese-black text-white font-bold text-base py-1 rounded-t">Disponíveis para investir:</caption>
+    <div className="w-full flex items-center justify-center py-5">
+      <table className="w-2/4 drop-shadow-lg">
+        <caption
+          className="bg-chinese-black text-white font-bold text-base py-1 rounded-t"
+        >
+          Disponíveis para investir:
+
+        </caption>
         <thead className="bg-tangerine-yellow">
           <tr>
             <th className="px-4 py-3 text-center text-base font-bold tracking-wider">Ação</th>
@@ -30,7 +35,7 @@ function StockTable() {
           {
             stocks.map((stock) => (
               <tr key={stock.AssetCode}>
-                <td className="px-4 py-3 text-center text-sm font-medium text-black">{stock.AssetName}</td>
+                <td className="px-4 py-4 text-center text-sm font-medium text-black">{stock.AssetName}</td>
                 <td className="px-4 py-4 text-center text-sm font-medium text-black">{stock.AssetQtd}</td>
                 <td className="px-4 py-4 text-center text-sm font-medium text-black">{stock.Value}</td>
                 <td className="flex justify-center px-4 py-4">
