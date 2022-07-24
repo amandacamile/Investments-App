@@ -68,30 +68,33 @@ function BuyStocks() {
       Swal.fire({
         title: 'Deseja efetuar a compra?',
         html:
-        '<p >Quantidade de ações:</p>'
-        + `<p>${buyValue}</p>`
-        + '<p >Valor Total:</p>'
-        + `<p>R$ ${purchaseTotal}</p>`
-        + '<hr/>'
-        + '<p >Saldo Atual:</p>'
-        + `<p>R$ ${balance.toFixed(2)}</p>`,
+        `<p>Quantidade de ações: ${buyValue}</p>`
+        + '<br/>'
+        + `<p>Valor Total: R$ ${purchaseTotal}</p>`
+        + '<br/><hr/><br/>'
+        + `<p>Saldo Atual: R$ ${balance.toFixed(2)}</p>`,
         text: 'Ao clicar em Sim a compra será efetuada!',
-        icon: 'warning',
+        color: '#000000',
         showCancelButton: true,
-        cancelButtonColor: '#d33',
+        cancelButtonColor: '#A6A6A6',
         cancelButtonText: 'Cancelar',
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#121212',
         confirmButtonText: 'Sim',
         showConfirmButton: true,
       }).then((result) => {
         if (result.isConfirmed) {
           makePurchase();
           setBalance(balance - purchaseTotal);
-          Swal.fire(
-            'Compra Efetuada!',
-            'Ação comprada já consta em suas ações',
-            'success',
-          );
+          Swal.fire({
+            icon: 'success',
+            iconColor: '#FFC709',
+            color: '#000000',
+            title: 'Compra Efetuada!',
+            text: 'Ação comprada já consta em suas ações',
+            confirmButtonColor: '#121212',
+            confirmButtonText: 'Ok',
+            showConfirmButton: true,
+          });
         }
         closeModal();
       });
@@ -101,8 +104,11 @@ function BuyStocks() {
         position: 'top-end',
         showConfirmButton: false,
         timer: 3000,
+        showClass: { popup: 'swal2-noanimation' },
       }).fire({
         icon: 'warning',
+        iconColor: '#FFC709',
+        color: '#121212',
         title: 'Saldo Insuficiente!',
       });
     }
@@ -112,29 +118,49 @@ function BuyStocks() {
 
   return (
     <div>
-      <h1>Compra</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Ação</th>
-            <th>Qtde</th>
-            <th>Valor (R$)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{infoStock.name}</td>
-            <td>{infoStock.qtd}</td>
-            <td>{infoStock.value}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="w-full flex items-center justify-center pt-5">
+        <table className="w-4/5 mb-10">
+          <thead className="bg-tangerine-yellow">
+            <tr>
+              <th className="px-4 py-3 text-center text-base font-bold tracking-wider">Ação</th>
+              <th className="px-4 py-3 text-center text-base font-bold tracking-wider">Qtde</th>
+              <th className="px-4 py-3 text-center text-base font-bold tracking-wider">Valor (R$)</th>
+            </tr>
+          </thead>
+          <tbody className="bg-light-grey">
+            <tr>
+              <td className="px-4 py-3 text-center text-sm font-medium text-black">{infoStock.name}</td>
+              <td className="px-4 py-3 text-center text-sm font-medium text-black">{infoStock.qtd}</td>
+              <td className="px-4 py-3 text-center text-sm font-medium text-black">{infoStock.value}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <p style={status.type === 'error' ? { color: '#ff0000' } : null}>{status.message}</p>
-      <input type="text" placeholder="Informe o valor" onChange={handleInputBuy} />
-      {/* <button type="button">Vender</button>
-        <input type="text" placeholder="Informe o valor" onChange={handleInputSell} /> */}
+      <div className="p-5 flex items-end justify-center">
+        <label
+          htmlFor="amount"
+          className="text-chinese-grey text-xl font-bold"
+        >
+          Quantidade
+          <input
+            type="text"
+            id="amount"
+            className="block border rounded w-3/4 py-2 px-3 mr-1 text-gray-700"
+            placeholder="Informe o valor"
+            onChange={handleInputBuy}
+          />
+        </label>
 
-      <button type="button" onClick={handleButtonConfirm}>Confirmar</button>
+        <button
+          type="button"
+          className="w-1/4 bg-chinese-black text-white text-xl font-bold py-3 px-3 rounded"
+          onClick={handleButtonConfirm}
+        >
+          Confirmar
+
+        </button>
+      </div>
     </div>
   );
 }

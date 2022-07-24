@@ -64,26 +64,30 @@ function SellStocks() {
     Swal.fire({
       title: 'Deseja efetuar a venda?',
       html:
-        '<p >Quantidade de ações:</p>'
-        + `<p>${sellValue}</p>`
-        + '<p >Valor Total da Venda:</p>'
-        + `<p>R$ ${totalSale}</p>`,
-      text: 'Ao clicar em Sim a compra será efetuada!',
-      icon: 'warning',
+        `<p className="text-black"> Quantidade de ações: ${sellValue}</p>`
+        + '<br/>'
+        + `<p >Valor Total: R$ ${totalSale}</p>`,
+      text: 'Ao clicar em Sim a venda será efetuada!',
+      color: '#000000',
       showCancelButton: true,
-      cancelButtonColor: '#d33',
+      cancelButtonColor: '#A6A6A6',
       cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#121212',
       confirmButtonText: 'Sim',
       showConfirmButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
         makeSale();
         setBalance(balance + totalSale);
-        Swal.fire(
-          'Venda Efetuada!',
-          'success',
-        );
+        Swal.fire({
+          icon: 'success',
+          iconColor: '#FFC709',
+          color: '#000000',
+          title: 'Venda Efetuada!',
+          confirmButtonColor: '#121212',
+          confirmButtonText: 'Ok',
+          showConfirmButton: true,
+        });
       }
       closeModal();
     });
