@@ -54,7 +54,7 @@ function Login() {
 
   return (
     <div className="h-screen bg-white grid items-center justify-center">
-      <form className="shadow-md rounded-lg bg-light-grey px-20 pt-20 pb-20 mb-8">
+      <form className="shadow-3xl rounded-lg bg-light-grey px-20 pt-20 pb-20 mb-8">
         <div className="mb-10">
           <label className="block text-chinese-grey text-xl font-bold mb-4" htmlFor="email">
             Email

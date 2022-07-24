@@ -93,28 +93,49 @@ function SellStocks() {
 
   return (
     <div>
-      <h1>Vender</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Ação</th>
-            <th>Qtde</th>
-            <th>Valor (R$)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{infoStock.name}</td>
-            <td>{infoStock.qtd}</td>
-            <td>{infoStock.value}</td>
-          </tr>
-        </tbody>
-      </table>
-
+      <div className="w-full flex items-center justify-center pt-5">
+        <table className="w-4/5 mb-10">
+          <thead className="bg-tangerine-yellow">
+            <tr>
+              <th className="px-4 py-3 text-center text-base font-bold tracking-wider">Ação</th>
+              <th className="px-4 py-3 text-center text-base font-bold tracking-wider">Qtde</th>
+              <th className="px-4 py-3 text-center text-base font-bold tracking-wider">Valor (R$)</th>
+            </tr>
+          </thead>
+          <tbody className="bg-light-grey">
+            <tr>
+              <td className="px-4 py-3 text-center text-sm font-medium text-black">{infoStock.name}</td>
+              <td className="px-4 py-3 text-center text-sm font-medium text-black">{infoStock.qtd}</td>
+              <td className="px-4 py-3 text-center text-sm font-medium text-black">{infoStock.value}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <p style={status.type === 'error' ? { color: '#ff0000' } : null}>{status.message}</p>
-      <input type="text" placeholder="Informe o valor" onChange={handleInputSell} />
+      <div className="p-5 flex items-end justify-center">
+        <label
+          className="text-chinese-grey text-xl font-bold"
+          htmlFor="amount"
+        >
+          Quantidade
+          <input
+            type="text"
+            id="amount"
+            className="block border rounded w-3/4 py-2 px-3 mr-1 text-gray-700"
+            placeholder="Informe o valor"
+            onChange={handleInputSell}
+          />
+        </label>
 
-      <button type="button" onClick={handleButtonConfirm}>Confirmar</button>
+        <button
+          type="button"
+          className="w-1/4 bg-chinese-black text-white text-xl font-bold py-3 px-3 rounded"
+          onClick={handleButtonConfirm}
+        >
+          Confirmar
+
+        </button>
+      </div>
     </div>
   );
 }
