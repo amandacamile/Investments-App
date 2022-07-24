@@ -26,7 +26,7 @@ function Header({ hideWalletButton }) {
 }
 
 Header.defaultProps = {
-  hideWalletButton: true,
+  hideWalletButton: false,
 };
 
 Header.propTypes = {
