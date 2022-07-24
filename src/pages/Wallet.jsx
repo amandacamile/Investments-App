@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import Header from '../components/Header';
 import { WalletContext } from '../context/WalletContext';
-import '../styles/wallet.css';
 
 function Wallet() {
   const navigate = useNavigate();
@@ -19,7 +18,7 @@ function Wallet() {
   });
 
   const handleInputValue = ({ target }) => {
-    setValueInput(Number(target.value));
+    setValueInput(target.value);
   };
 
   const validateInputWallet = async () => {
@@ -58,8 +57,8 @@ function Wallet() {
   const transactionConfirmation = async () => {
     if (!(await validateInputWallet())) return;
 
-    if (isDeposit && valueInput) setBalance(balance + valueInput);
-    if (isWithdraw && valueInput) setBalance(balance - valueInput);
+    if (isDeposit && valueInput) setBalance(balance + Number(valueInput));
+    if (isWithdraw && valueInput) setBalance(balance - Number(valueInput));
     setValueInput('');
   };
 
