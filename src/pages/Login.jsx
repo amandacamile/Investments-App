@@ -44,12 +44,17 @@ function Login() {
     navigate('/stocks');
   };
 
+  // eslint-disable-next-line consistent-return
   const handleInputChange = async ({ target: { name, value } }) => {
-    await validateLogin();
-    updateLogin({
-      ...login,
-      [name]: value,
-    });
+    try {
+      await validateLogin();
+      updateLogin({
+        ...login,
+        [name]: value,
+      });
+    } catch (error) {
+      return null;
+    }
   };
 
   return (
