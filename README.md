@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Road Investimentos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação que simula uma corretora de investimentos, onde o usuário consegue visualizar, comprar e vender ações. Além de poder depositar e retirar um valor de seu saldo dentro da aplicação.
 
-## Available Scripts
+##  Como usar
 
-In the project directory, you can run:
+###  1 - Ao acessar, você verá a página de login...
 
-### `npm start`
+![ Imagem da tela de Login ](https://github.com/amandacamile/Investments-App/blob/main/readme-images/tela-de-login.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+###  2 - Após preenche-la e clicar no botão "Acessar", você será direcionado para página de ações, onde poderá visualizar a tabela de ações disponíveis e a tabela de ações do usuário.
 
-### `npm test`
+![ Imagem da tela de ações ](https://github.com/amandacamile/Investments-App/blob/main/readme-images/tela-de-acoes.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+###  3 - Ao clicar no botão "$" presente nas tabelas acima, a seguinte caixa de diálogo irá aparecer, onde será possível efetuar a compra ou venda da ação selecionada!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![ Imagem da tela de compra e venda ](https://github.com/amandacamile/Investments-App/blob/main/readme-images/tela-de-compra-e-venda.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+###  4 - Você também pode fazer depósitos e retiradas de seu saldo na aplicação, basta clicar no botão "Acessar minha carteira", localizado na região superior à direita da tela de açoes...
 
-### `npm run eject`
+![ Imagem com instrução de qual botão clicar ](https://github.com/amandacamile/Investments-App/blob/main/readme-images/instrucao-botao-carteira.png)
+### ... e selecionar a opção desejada!
+![ Imagem da tela de depósito e retirada (carteira) ](https://github.com/amandacamile/Investments-App/blob/main/readme-images/tela-de-carteira.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Tecnologias utilizadas
+- [React](https://reactjs.org/)
+    >Por já ter trabalhado com React em outros projeto durante meu desenvolvimento na Trybe, decidi utilizar a mesma nesse projeto por já ter conhecimo de seu funcionamento.
+- [Context API](https://pt-br.reactjs.org/docs/context.html)
+    >A escolha de utilizar o Context API, é por achar sua usabilidade mais simples se comparado ao Redux, dado que a aplicação desenvolvida não tem grande escala, ou seja, não tem muitos arquivos para gerenciamento de estado (o que nesse caso, o Redux seria uma boa escolha).
+- [React Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html)
+    >Os Hooks foram utilizados com o objetivo de criar estados locais nos componentes da aplicação utilizando useState, e também facilitar o uso dos contextos usando useContext.
+- [Yup](https://www.npmjs.com/package/yup)
+    >Essa biblioteca de validação de dados foi utilizada por disponibilizar uma forma mais enxuta de autenticar os dados, possibilitando mostrá-los na tela para o usuário. 
+- [SweetAlert2](https://sweetalert2.github.io/)
+    >A biblioteca SweetAlert2 foi utilizada para customizar as caixas de alertas presentes em alguns componentes do projeto.
+- [Tailwind CSS](https://tailwindcss.com/docs/installation)
+    >Por último, mas não menos importante, escolhi utilizar o Tailwind CSS nesse projeto pro querer aprender a utilizar um framework destinado a estilização, e percebi que o Tailwind conseguia facilitar e melhorar o uso do CSS através das classes utilitárias, e que diferente do Bootstrap que disponibiliza a estilização do componente pronta, no Tailwind você pode controlar a estilização de seus componentes.
+    
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Rodando localmente
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Clone o projeto
 
-## Learn More
+```bash
+  git clone git@github.com:amandacamile/Investments-App.git
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Entre no diretório do projeto
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+  cd Investments-App
+```
 
-### Code Splitting
+Instale as dependências
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+  npm install
+```
 
-### Analyzing the Bundle Size
+Inicie o servidor
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+  npm run start
+```
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Suporte
 
-### Advanced Configuration
+Para suporte, mande um email para amandacamileso18@gmail.com.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+## Autores
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Amanda Camile Silva de Oliveira**
+- Github: [@amandacamile](https://www.github.com/amandacamile)
+- LinkedIn: [@amandacamile](https://www.linkedin.com/in/amandacamile/)
