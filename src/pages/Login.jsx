@@ -79,7 +79,7 @@ function Login() {
             </label>
           </div>
 
-          <div className="mb-16">
+          <div className="mb-12">
             <label className="block text-light-grey text-xl font-bold mb-2" htmlFor="email">
               Senha
               <input
@@ -93,7 +93,13 @@ function Login() {
             </label>
           </div>
 
-          <p style={status.type === 'error' ? { color: '#ff0000' } : null}>{status.message}</p>
+          <p className={status.type === 'error'
+            ? 'text-red font-bold text-center text-lg p-3'
+            : null}
+          >
+            {status.message}
+
+          </p>
           <div className="flex justify-center">
             <button
               type="button"

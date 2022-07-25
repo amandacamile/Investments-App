@@ -18,10 +18,6 @@ function Wallet() {
     message: '',
   });
 
-  const handleInputValue = ({ target }) => {
-    setValueInput(target.value);
-  };
-
   const validateInputWallet = async () => {
     if (!isDeposit && !isWithdraw) {
       setStatus({
@@ -55,6 +51,11 @@ function Wallet() {
     }
   };
 
+  const handleInputValue = ({ target }) => {
+    validateInputWallet();
+    setValueInput(target.value);
+  };
+
   const transactionConfirmation = async () => {
     if (!(await validateInputWallet())) return;
 
@@ -71,7 +72,9 @@ function Wallet() {
         <h3>Saldo em conta:</h3>
         <h3>{`R$ ${Number(balance).toFixed(2)}`}</h3>
       </div>
-      <div className="flex justify-center">
+
+      <p className="font-bold text-center text-lg p-3">Escolha uma das opções abaixo:</p>
+      <div className="flex justify-center mb-4">
         <button
           className={isDeposit ? 'bg-chinese-black text-white text-center text-base font-bold tracking-wider py-4 mr-5 w-1/4 rounded'
             : 'bg-light-grey text-black text-center text-base font-bold tracking-wider py-4 w-1/4 mr-4 rounded'}
@@ -99,24 +102,28 @@ function Wallet() {
 
         </button>
       </div>
-      <p style={status.type === 'error' ? { color: '#ff0000' } : null}>{status.message}</p>
-      <div className="p-5 flex items-end justify-center">
-        <label
-          className="text-chinese-grey text-lg font-bold"
-          htmlFor="valueWallet"
-        >
-          <input
-            type="text"
-            id="valueWallet"
-            className="block bg-light-grey rounded-l w-full py-3 px-3 text-gray-700"
-            value={valueInput}
-            placeholder="Informe o valor"
-            onChange={handleInputValue}
-          />
-        </label>
+
+      <p className={status.type === 'error'
+        ? 'text-red font-bold text-center text-lg p-3'
+        : null}
+      >
+        {status.message}
+
+      </p>
+
+      <p className="font-bold text-center text-lg p-3">Insira o valor no campo abaixo:</p>
+      <div className="flex justify-center mb-4">
+        <input
+          type="text"
+          id="valueWallet"
+          className="block bg-light-grey rounded-l py-4 px-3 font-bold w-1/4 text-gray-700 rounded mr-4"
+          value={valueInput}
+          placeholder="Insira o valor"
+          onChange={handleInputValue}
+        />
         <button
           type="button"
-          className="w-1/4 bg-chinese-black text-white text-xl font-bold py-3 px-3 rounded-r"
+          className="bg-chinese-black text-white text-center text-xl font-bold tracking-wider py-3 w-1/4 rounded"
           onClick={() => transactionConfirmation()}
         >
           Confirmar
