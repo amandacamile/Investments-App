@@ -1,5 +1,4 @@
-
-# Investments-App
+# Road Investimentos
 
 Aplicação que simula uma corretora de investimentos, onde o usuário consegue visualizar, comprar e vender ações. Além de poder depositar e retirar um valor de seu saldo dentro da aplicação.
 
