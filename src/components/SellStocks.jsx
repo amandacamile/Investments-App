@@ -68,7 +68,7 @@ function SellStocks() {
       html:
         `<p className="text-black"> Quantidade de ações: ${sellValue}</p>`
         + '<br/>'
-        + `<p >Valor Total: R$ ${totalSale}</p>`,
+        + `<p >Valor Total: R$ ${totalSale.toFixed(2)}</p>`,
       text: 'Ao clicar em Sim a venda será efetuada!',
       color: '#000000',
       showCancelButton: true,
@@ -117,7 +117,13 @@ function SellStocks() {
           </tbody>
         </table>
       </div>
-      <p style={status.type === 'error' ? { color: '#ff0000' } : null}>{status.message}</p>
+      <p className={status.type === 'error'
+        ? 'text-red font-bold text-center text-lg p-3'
+        : null}
+      >
+        {status.message}
+
+      </p>
       <div className="p-5 flex items-end justify-center">
         <label
           className="text-chinese-grey text-xl font-bold"

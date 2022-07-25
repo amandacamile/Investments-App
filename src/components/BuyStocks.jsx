@@ -16,10 +16,6 @@ function BuyStocks() {
     message: '',
   });
 
-  const handleInputBuy = ({ target }) => {
-    setBuyValue(Number(target.value));
-  };
-
   const validateBuyValue = async () => {
     if (buyValue > infoStock.qtd) {
       setStatus({
@@ -56,6 +52,11 @@ function BuyStocks() {
 
     manipulateMyStocks(infoStock, buyValue);
     removeZeroedStocks();
+  };
+
+  const handleInputBuy = ({ target }) => {
+    // validateBuyValue();
+    setBuyValue(Number(target.value));
   };
 
   const handleButtonConfirm = async () => {
@@ -135,7 +136,13 @@ function BuyStocks() {
           </tbody>
         </table>
       </div>
-      <p style={status.type === 'error' ? { color: '#ff0000' } : null}>{status.message}</p>
+      <p className={status.type === 'error'
+        ? 'text-red text-center font-bold text-lg p-3'
+        : null}
+      >
+        {status.message}
+
+      </p>
       <div className="p-5 flex items-end justify-center">
         <label
           htmlFor="amount"
