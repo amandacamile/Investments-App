@@ -8,24 +8,24 @@ Aplicação que simula uma corretora de investimentos, onde o usuário consegue 
 
 ###  1 - Ao acessar, você verá a página de login...
 
-![ Imagem da tela de Login ](https://github.com/amandacamile/Investments-App/blob/main/readme-images/tela-de-login.png)
+![ Imagem da tela de Login ](https://github.com/amandacamile/Investments-App/blob/main/public/readme-images/tela-de-login.png)
 
 
 ###  2 - Após preenche-la e clicar no botão "Acessar", você será direcionado para página de ações, onde poderá visualizar a tabela de ações disponíveis e a tabela de ações do usuário.
 
-![ Imagem da tela de ações ](https://github.com/amandacamile/Investments-App/blob/main/readme-images/tela-de-acoes.png)
+![ Imagem da tela de ações ](https://github.com/amandacamile/Investments-App/blob/main/public/readme-images/tela-de-acoes.png)
 
 
 ###  3 - Ao clicar no botão "$" presente nas tabelas acima, a seguinte caixa de diálogo irá aparecer, onde será possível efetuar a compra ou venda da ação selecionada!
 
-![ Imagem da tela de compra e venda ](https://github.com/amandacamile/Investments-App/blob/main/readme-images/tela-de-compra-e-venda.png)
+![ Imagem da tela de compra e venda ](https://github.com/amandacamile/Investments-App/blob/main/public/readme-images/tela-de-compra-e-venda.png)
 
 
 ###  4 - Você também pode fazer depósitos e retiradas de seu saldo na aplicação, basta clicar no botão "Acessar minha carteira", localizado na região superior à direita da tela de açoes...
 
-![ Imagem com instrução de qual botão clicar ](https://github.com/amandacamile/Investments-App/blob/main/readme-images/instrucao-botao-carteira.png)
+![ Imagem com instrução de qual botão clicar ](https://github.com/amandacamile/Investments-App/blob/main/public/readme-images/instrucao-botao-carteira.png)
 ### ... e selecionar a opção desejada!
-![ Imagem da tela de depósito e retirada (carteira) ](https://github.com/amandacamile/Investments-App/blob/main/readme-images/tela-de-carteira.png)
+![ Imagem da tela de depósito e retirada (carteira) ](https://github.com/amandacamile/Investments-App/blob/main/public/readme-images/tela-de-carteira.png)
 
 
 ## Tecnologias utilizadas
