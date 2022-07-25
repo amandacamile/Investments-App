@@ -1,5 +1,7 @@
 # Road Investimentos
 
+![ Logo da aplicação ](https://github.com/amandacamile/Investments-App/blob/main/src/_assets/img/ROAD.png)
+
 Aplicação que simula uma corretora de investimentos, onde o usuário consegue visualizar, comprar e vender ações. Além de poder depositar e retirar um valor de seu saldo dentro da aplicação.
 
 ##  Como usar
